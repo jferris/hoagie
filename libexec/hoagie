@@ -26,12 +26,12 @@ export PATH="${libexec_path}:$PATH"
 command="$1"
 case "$command" in
 "" | "-h" | "--help" )
-  exec sub-help
+  exec hoagie-help
   ;;
 * )
-  command_path="$(command -v "sub-$command" || true)"
+  command_path="$(command -v "hoagie-$command" || true)"
   if [ ! -x "$command_path" ]; then
-    echo "sub: no such command \`$command'" >&2
+    echo "hoagie: no such command \`$command'" >&2
     exit 1
   fi
 

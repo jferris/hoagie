@@ -45,10 +45,10 @@ if [ -z "$print" ]; then
     ;;
   esac
 
-  { echo "# Load sub automatically by adding"
+  { echo "# Load hoagie automatically by adding"
     echo "# the following to ${profile}:"
     echo
-    echo "eval \"\$(${_SUB_ROOT}/bin/sub init -)\""
+    echo "eval \"\$(${_SUB_ROOT}/bin/hoagie init -)\""
     echo
   } >&2
 
@@ -59,14 +59,14 @@ echo "export PATH=\"\${PATH}:${_SUB_ROOT}/bin\""
 
 case "$shell" in
 bash | zsh )
-  echo "source \"$root/completions/sub.${shell}\""
+  echo "source \"$root/completions/hoagie.${shell}\""
   ;;
 esac
 
-commands=(`sub commands --sh`)
+commands=(`hoagie commands --sh`)
 IFS="|"
 cat <<EOS
-sub() {
+hoagie() {
   local command="\$1"
   if [ "\$#" -gt 0 ]; then
     shift
@@ -74,9 +74,9 @@ sub() {
 
   case "\$command" in
   ${commands[*]})
-    eval \`sub "sh-\$command" "\$@"\`;;
+    eval \`hoagie "sh-\$command" "\$@"\`;;
   *)
-    command sub "\$command" "\$@";;
+    command hoagie "\$command" "\$@";;
   esac
 }
 EOS
